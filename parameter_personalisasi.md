@@ -14,7 +14,7 @@ Konstanta skala data:
 (a + b + 1), K = 4
 
 Sudut awal bilangan kompleks:
-(a · 30) + (b · 5), θ₀ (derajat) = 40
+(a · 30) + (b · 5), θ₀ (derajat) = 40°
 
 Learning rate Gradient Descent:
 0.001 · (b + 1), α = 0.003
