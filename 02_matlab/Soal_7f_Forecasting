@@ -1,0 +1,54 @@
+% ===================================================== 
+%  UTS Matematika Sains Data — Semester Genap 2025/2026 
+%  Soal 7 — Forecasting
+%  --------------------------------------------------- 
+%  Nama  : Ziohamdan Putra Yudhana
+%  NIM   : 2510514012
+%  Parameter: N=12, a=1, b=2, K=4, theta0=40, alpha=0.003 
+%  Tanggal: <2026-04-28> 
+% =====================================================
+
+clc; clear;
+
+% Data historis
+t = (1:12)';
+S = [52, 60, 60, 68, 68, 76, 76, 84, 84, 92, 92, 100]';
+
+% Regresi linear
+p = polyfit(t, S, 1);
+trend = polyval(p, t);
+
+% Residual (error)
+residual = S - trend;
+
+% Mean Absolute Error (MAE)
+MAE = mean(abs(residual));
+
+fprintf('=== SOAL 7.4f: EVALUASI MODEL ===\n\n');
+fprintf('MAE (Mean Absolute Error) = %.4f juta rupiah\n', MAE);
+
+% Residual per periode
+fprintf('\nResidual per bulan:\n');
+for i = 1:12
+    fprintf('  Bulan %2d: S_n = %.0f, tren = %.2f, residual = %.2f\n', ...
+            i, S(i), trend(i), residual(i));
+end
+
+% Plot residual
+figure('Position', [100 100 800 500], 'Color', 'w');
+
+subplot(2,1,1);
+plot(t, residual, 'b-o', 'MarkerSize', 6, 'MarkerFaceColor', 'b');
+xlabel('Bulan ke-n'); ylabel('Residual');
+title('Residual (S_n - tren linear)');
+yline(0, 'r--');
+grid on;
+
+subplot(2,1,2);
+bar(t, residual, 'FaceColor', [0.5 0.5 0.8]);
+xlabel('Bulan ke-n'); ylabel('Residual');
+title('Residual dalam Bentuk Bar');
+yline(0, 'r--');
+grid on;
+
+fprintf('\nTimestamp: %s\n', datetime('now'));
